@@ -1,0 +1,35 @@
+<div class="container">
+  <h1>Twitter</h1>
+
+  <h4>Nuevo twit</h4>
+
+  <div class="new-tuit">
+    <form action="">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Nombre de usuario:</label>
+        <input type="text" class="form-control" name="user" [(ngModel)]="tuit.user" id="exampleInputEmail1" aria-describedby="emailHelp">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Twit:</label>
+        <input type="text" class="form-control" name="tuit" [(ngModel)]="tuit.tuit" id="exampleInputPassword1">
+      </div>
+    </form>
+
+    <button class="btn btn-primary btn-block" (click)="saveTuit()">Twitear</button>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="incompleteData">
+    Complete el formulario
+  </div>
+
+  <br>
+  <hr>
+
+  <h4 *ngIf="(tuitsObservable | async)?.length > 0">Lista de twits ({{ ( tuitsObservable | async )?.length }})</h4>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let tuit of tuitsObservable | async">
+      <span style="font-weight: 600">{{ tuit.user }}:</span> {{ tuit.tuit }}
+    </li>
+  </ul>
+</div>
+
+
